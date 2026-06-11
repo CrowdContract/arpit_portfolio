@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: arpit-portfolio
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GITHUB_USERNAME
+        value: CrowdContract
+      - key: GITHUB_TOKEN
+        sync: false
+    autoDeploy: true

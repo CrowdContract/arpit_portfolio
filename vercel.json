@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "functions": {
+    "api/chat.js": { "maxDuration": 30 },
+    "api/github.js": { "maxDuration": 15 }
+  },
+  "routes": [
+    {
+      "src": "/api/chat",
+      "dest": "/api/chat.js"
+    },
+    {
+      "src": "/api/github",
+      "dest": "/api/github.js"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}
