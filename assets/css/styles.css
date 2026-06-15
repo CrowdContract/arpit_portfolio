@@ -1590,38 +1590,12 @@ button, input, textarea { border: none; outline: none; background-color: transpa
   box-shadow: 0 0 8px hsla(var(--hue), 70%, 50%, 0.6);
 }
 
-/* ── CUSTOM CURSOR ── */
-.cursor-dot,
-.cursor-ring {
-  position: fixed;
-  top: 0; left: 0;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99997;
-  opacity: 0;
-  transition: opacity 0.3s;
-  will-change: transform;
-}
-.cursor-dot {
-  width: 8px; height: 8px;
-  background: var(--first-color);
-  box-shadow: 0 0 6px var(--first-color);
-}
-.cursor-ring {
-  width: 32px; height: 32px;
-  border: 2px solid hsla(var(--hue), 60%, 40%, 0.5);
-  background: transparent;
-  transition: opacity 0.3s, width 0.25s, height 0.25s, border-color 0.25s;
-}
-.cursor-dot.cursor-hover  { background: hsl(var(--hue), 80%, 60%); transform: scale(1.5) !important; }
-.cursor-ring.cursor-hover { width: 48px; height: 48px; border-color: var(--first-color); margin: -8px; }
-.cursor-dot.cursor-click  { transform: scale(0.7) !important; }
-.cursor-ring.cursor-click { transform: scale(0.85) !important; }
-
-/* Hide default cursor when custom cursor is active */
+/* ── CUSTOM CURSOR — handled entirely by canvas in phase3.js ── */
 @media (hover: hover) {
   *, *::before, *::after { cursor: none !important; }
 }
+/* Cursor canvas injected by JS */
+#cursor-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 99997; }
 
 /* ── 3D FLIP CARDS ── */
 .flip-card {
