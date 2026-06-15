@@ -1592,10 +1592,15 @@ button, input, textarea { border: none; outline: none; background-color: transpa
 
 /* ── CUSTOM CURSOR — handled entirely by canvas in phase3.js ── */
 @media (hover: hover) {
-  *, *::before, *::after { cursor: none !important; }
+  html { cursor: none !important; }
+  a, button, [role="button"], label, input, textarea, select,
+  .nav-settings, .nav-toggle, .style-switcher-close,
+  .style-switcher-color, .faq-chip, .galaxy-node,
+  .flip-card, .chatbot-toggle, .github-bell-btn, .work-item {
+    cursor: none !important;
+  }
 }
-/* Cursor canvas injected by JS */
-#cursor-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 99997; }
+#cursor-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 1999; }
 
 /* ── 3D FLIP CARDS ── */
 .flip-card {

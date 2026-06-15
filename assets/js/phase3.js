@@ -308,7 +308,7 @@
 
     var canvas = document.createElement('canvas');
     canvas.id = 'cursor-canvas';
-    canvas.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:99997;';
+    canvas.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1999;';
     document.body.appendChild(canvas);
     var ctx = canvas.getContext('2d');
 
@@ -379,7 +379,7 @@
     animate();
 
     var s = document.createElement('style');
-    s.textContent = '@media (hover:hover){*,*::before,*::after{cursor:none !important}}';
+    s.textContent = '@media (hover:hover){ html { cursor: none !important; } a, button, [role="button"], label, input, textarea, select, .nav-settings, .nav-toggle, .style-switcher-close, .style-switcher-color, .style-switcher-input, .style-switcher-label, .faq-chip, .galaxy-node, .flip-card, .chatbot-toggle, .github-bell-btn, .work-item { cursor: none !important; } }';
     document.head.appendChild(s);
   })();
 
