@@ -1321,3 +1321,184 @@ button, input, textarea { border: none; outline: none; background-color: transpa
   .cs-metrics { flex-wrap: wrap; gap: 1rem; }
   .nav-logo { font-size: 1.1rem; }
 }
+
+
+/*=============== VISUAL EFFECTS ===============*/
+
+/* ── Shader Gradient Canvas ── */
+.home { position: relative; overflow: hidden; }
+.hero-gradient-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.85;
+}
+.home-container { position: relative; z-index: 1; }
+
+/* Dark mode — deeper gradient */
+.dark .hero-gradient-canvas { opacity: 0.65; }
+
+/* ── Lottie Service Icons ── */
+.lottie-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1rem;
+}
+
+/* ── Rive Bot Canvas ── */
+.rive-bot-canvas {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: block;
+}
+.rive-fallback { display: none; }
+
+/* ── Hero Floating Particles ── */
+.hero-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--first-color);
+  pointer-events: none;
+  animation: float-up linear infinite;
+  z-index: 0;
+}
+@keyframes float-up {
+  0%   { transform: translateY(0)   scale(1);   opacity: inherit; }
+  50%  { transform: translateY(-45vh) scale(1.3); }
+  100% { transform: translateY(-100vh) scale(0.6); opacity: 0; }
+}
+
+/* ── Card shimmer on load ── */
+.card {
+  background: var(--container-color);
+  position: relative;
+  overflow: hidden;
+}
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    hsla(var(--hue), 60%, 80%, 0.15) 50%,
+    transparent 60%
+  );
+  transform: translateX(-100%);
+  transition: transform 0s;
+}
+.card:hover::after {
+  transform: translateX(100%);
+  transition: transform 0.5s ease;
+}
+
+/* ── Section title reveal ── */
+.section-title {
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.section-title:not(.title-revealed) {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.section-title.title-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Galaxy node glow pulse ── */
+.galaxy-node:hover {
+  box-shadow: 0 0 0 4px hsla(var(--hue), 60%, 40%, 0.15),
+              0 8px 32px var(--shadow-lg);
+}
+.galaxy-center {
+  animation: galaxy-pulse 3s ease-in-out infinite,
+             center-glow 4s ease-in-out infinite;
+}
+@keyframes center-glow {
+  0%, 100% { filter: drop-shadow(0 0 8px hsla(var(--hue), 70%, 45%, 0.6)); }
+  50%       { filter: drop-shadow(0 0 20px hsla(var(--hue), 70%, 55%, 0.9)); }
+}
+
+/* ── Orbit rings animated dash ── */
+.galaxy-orbit {
+  animation: orbit-rotate 30s linear infinite;
+  border: 1px dashed hsla(var(--hue), 40%, 50%, 0.2);
+}
+.orbit-2 { animation-duration: 45s; animation-direction: reverse; }
+.orbit-3 { animation-duration: 60s; }
+@keyframes orbit-rotate {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ── Gradient text for nav logo ── */
+.nav-logo {
+  background: linear-gradient(135deg, var(--first-color), hsl(var(--hue), 80%, 60%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glowing CTA button ── */
+.btn {
+  position: relative;
+  isolation: isolate;
+}
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--first-color), hsl(var(--hue), 80%, 60%));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s;
+  filter: blur(8px);
+}
+.btn:hover::after { opacity: 0.6; }
+
+/* ── Smooth gradient section separators ── */
+.section:nth-child(even) {
+  background: linear-gradient(
+    180deg,
+    var(--body-color) 0%,
+    hsla(var(--hue), 30%, 88%, 0.5) 50%,
+    var(--body-color) 100%
+  );
+}
+.dark .section:nth-child(even) {
+  background: linear-gradient(
+    180deg,
+    var(--body-color) 0%,
+    hsla(var(--hue), 15%, 12%, 0.8) 50%,
+    var(--body-color) 100%
+  );
+}
+
+/* ── Journey dot pulse for active ── */
+.journey-dot-active {
+  animation: dot-pulse 2s ease-in-out infinite;
+}
+@keyframes dot-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 hsla(var(--hue), 60%, 40%, 0.4); }
+  50%       { box-shadow: 0 0 0 10px hsla(var(--hue), 60%, 40%, 0); }
+}
+
+/* ── Skill tooltip fade-scale ── */
+.skill-tooltip {
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  transform-origin: top center;
+}
+.skill-tooltip:not(.visible) { transform: scale(0.95) translateY(-4px); }
+.skill-tooltip.visible        { transform: scale(1) translateY(0); }
+
+/* ── Stats cards number glow ── */
+.github-stat-num, .home-data-no {
+  background: linear-gradient(135deg, var(--title-color), var(--first-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

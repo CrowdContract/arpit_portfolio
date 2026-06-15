@@ -13,9 +13,13 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100..900&family=Montserrat+Alternates:wght@600;700;800&display=swap" rel="stylesheet" />
+  <!-- Lottie Web -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js" defer></script>
+  <!-- Rive (for chatbot avatar) -->
+  <script src="https://unpkg.com/@rive-app/canvas@2.21.6/rive.js" defer></script>
 
   <link rel="stylesheet" href="assets/css/styles.css" />
-  <title>Arpit Kumar, Full-Stack Developer</title>
+  <title>Arpit Kumar — Full-Stack Developer</title>
 </head>
 <body class="light">
 
@@ -68,6 +72,9 @@
 
     <!--=============== HOME ===============-->
     <section class="home section" id="home">
+      <!-- Shader gradient background canvas -->
+      <canvas id="hero-gradient" class="hero-gradient-canvas" aria-hidden="true"></canvas>
+
       <div class="home-container container">
 
         <!-- LEFT: text content -->
@@ -130,6 +137,7 @@
           <div class="swiper-wrapper">
 
             <div class="swiper-slide card" data-motion="fade-up">
+              <div class="lottie-icon" id="lottie-mern"></div>
               <h4 class="services-subtitle">Full-Stack Dev</h4>
               <h3 class="services-title">MERN Stack Apps</h3>
               <p class="services-description">End-to-end web applications with React frontends, Node/Express APIs,
@@ -138,14 +146,16 @@
             </div>
 
             <div class="swiper-slide card" data-motion="fade-up">
+              <div class="lottie-icon" id="lottie-ai"></div>
               <h4 class="services-subtitle">AI / LLM Integration</h4>
               <h3 class="services-title">Intelligent Features</h3>
-              <p class="services-description">Integrating LLMs (Groq LLaMA, Gemini, OpenAI) into products 
+              <p class="services-description">Integrating LLMs (Groq LLaMA, Gemini, OpenAI) into products —
                 chatbots, summarization, code generation, automated grading, and OCR pipelines.</p>
               <a href="#case-studies" class="link">See Case Studies <i class="ri-arrow-right-line link-icon"></i></a>
             </div>
 
             <div class="swiper-slide card" data-motion="fade-up">
+              <div class="lottie-icon" id="lottie-deploy"></div>
               <h4 class="services-subtitle">Production Apps</h4>
               <h3 class="services-title">End-to-End Systems</h3>
               <p class="services-description">Building production-ready apps with role-based access, admin dashboards,
@@ -154,6 +164,7 @@
             </div>
 
             <div class="swiper-slide card" data-motion="fade-up">
+              <div class="lottie-icon" id="lottie-dsa"></div>
               <h4 class="services-subtitle">DSA &amp; Problem Solving</h4>
               <h3 class="services-title">Algorithms Expert</h3>
               <p class="services-description">250+ competitive programming problems solved. Strong foundation in
@@ -162,6 +173,7 @@
             </div>
 
             <div class="swiper-slide card" data-motion="fade-up">
+              <div class="lottie-icon" id="lottie-cloud"></div>
               <h4 class="services-subtitle">DevOps &amp; Deployment</h4>
               <h3 class="services-title">Cloud &amp; CI/CD</h3>
               <p class="services-description">Deploying on Vercel and Render, Git workflows, GitHub Actions basics,
@@ -1295,7 +1307,9 @@
   <!--=============== AI CHATBOT ===============-->
   <div class="chatbot-wrapper" id="chatbot-wrapper">
     <button class="chatbot-toggle" id="chatbot-toggle" aria-label="Open AI Assistant">
-      <i class="ri-robot-2-line" id="chatbot-icon-open"></i>
+      <!-- Rive robot avatar — falls back to icon if Rive unavailable -->
+      <canvas id="rive-bot-canvas" width="44" height="44" class="rive-bot-canvas"></canvas>
+      <i class="ri-robot-2-line rive-fallback" id="chatbot-icon-open"></i>
       <i class="ri-close-line" id="chatbot-icon-close" style="display:none"></i>
     </button>
 
@@ -1352,5 +1366,6 @@
   <script src="assets/js/github.js"></script>
   <script src="assets/js/chatbot.js"></script>
   <script src="assets/js/animations.js"></script>
+  <script src="assets/js/visual-effects.js"></script>
 </body>
 </html>
