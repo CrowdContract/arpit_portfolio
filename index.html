@@ -23,6 +23,30 @@
 </head>
 <body class="light">
 
+  <!--=============== SPLASH SCREEN ===============-->
+  <div id="splash" class="splash" aria-hidden="true">
+    <div class="splash-inner">
+      <div class="splash-logo">
+        <span class="splash-letter" data-l="A">A</span>
+        <span class="splash-letter" data-l="r">r</span>
+        <span class="splash-letter" data-l="p">p</span>
+        <span class="splash-letter" data-l="i">i</span>
+        <span class="splash-letter" data-l="t">t</span>
+      </div>
+      <p class="splash-tagline">Full-Stack Developer &amp; AI Engineer</p>
+      <div class="splash-bar"><div class="splash-bar-fill"></div></div>
+    </div>
+    <div class="splash-overlay-top"></div>
+    <div class="splash-overlay-bot"></div>
+  </div>
+
+  <!--=============== SCROLL PROGRESS ===============-->
+  <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
+
+  <!--=============== CUSTOM CURSOR ===============-->
+  <div id="cursor-dot"   class="cursor-dot"   aria-hidden="true"></div>
+  <div id="cursor-ring"  class="cursor-ring"  aria-hidden="true"></div>
+
   <!--=============== HEADER ===============-->
   <header class="header" id="header">
     <nav class="nav container">
@@ -318,216 +342,230 @@
 
           <!-- NextGen EduTrack -->
           <div class="mix fullstack saas">
-            <div class="card project-card" data-motion="fade-up">
-              <div class="project-img-wrap">
-                <img src="assets/img/project1.jpeg" alt="NextGen EduTrack" class="work-img" />
-                <div class="project-hover-overlay">
-                  <div class="project-arch">
-                    <div class="arch-flow">
-                      <span>React + Redux</span>
-                      <i class="ri-arrow-down-line"></i>
-                      <span>Node/Express API</span>
-                      <i class="ri-arrow-down-line"></i>
-                      <span>Groq LLaMA 3.3</span>
-                      <i class="ri-arrow-down-line"></i>
-                      <span>MongoDB + JWT</span>
-                    </div>
+            <div class="flip-card" data-motion="fade-up">
+              <div class="flip-card-inner">
+                <!-- FRONT -->
+                <div class="flip-front card project-card">
+                  <div class="project-img-wrap">
+                    <img src="assets/img/project1.jpeg" alt="NextGen EduTrack" class="work-img" />
                   </div>
+                  <div class="project-tags">
+                    <span class="tag">MERN</span><span class="tag">Groq</span><span class="tag">Socket.IO</span><span class="tag">Redux</span>
+                  </div>
+                  <h4 class="work-category">Full-Stack</h4>
+                  <h3 class="work-title">NextGen EduTrack</h3>
+                  <p class="work-description">AI-powered project collaboration platform for students, teachers &amp; admins. LLaMA 3.3 chatbot, automated grading, real-time notifications.</p>
+                  <span class="flip-hint"><i class="ri-refresh-line"></i> Hover for details</span>
                 </div>
-              </div>
-              <div class="project-tags">
-                <span class="tag">MERN</span><span class="tag">Groq</span><span class="tag">Socket.IO</span><span class="tag">Redux</span><span class="tag">Multer</span>
-              </div>
-              <h4 class="work-category">Full-Stack </h4>
-              <h3 class="work-title">NextGen EduTrack</h3>
-              <p class="work-description">
-                AI-powered project collaboration platform for students, teachers &amp; admins. Role-based dashboards,
-                real-time notifications, LLaMA 3.3 chatbot, automated grading, Framer Motion UI.
-              </p>
-              <div class="project-links">
-                <a href="https://github.com/CrowdContract/NextGen-EduTrack" target="_blank" class="link">
-                  GitHub <i class="ri-github-line link-icon"></i>
-                </a>
+                <!-- BACK -->
+                <div class="flip-back">
+                  <h3 class="flip-back-title">NextGen EduTrack</h3>
+                  <div class="flip-back-arch">
+                    <div class="flip-arch-node">React + Redux</div>
+                    <i class="ri-arrow-down-line"></i>
+                    <div class="flip-arch-node">Node/Express + JWT</div>
+                    <i class="ri-arrow-down-line"></i>
+                    <div class="flip-arch-node">Groq LLaMA 3.3</div>
+                    <i class="ri-arrow-down-line"></i>
+                    <div class="flip-arch-node">MongoDB</div>
+                  </div>
+                  <div class="flip-back-metrics">
+                    <div class="flip-metric"><span>3</span><p>Role Dashboards</p></div>
+                    <div class="flip-metric"><span>AI</span><p>Auto Grading</p></div>
+                    <div class="flip-metric"><span>RT</span><p>Notifications</p></div>
+                  </div>
+                  <a href="https://github.com/CrowdContract/NextGen-EduTrack" target="_blank" class="flip-back-link">View on GitHub <i class="ri-external-link-line"></i></a>
+                </div>
               </div>
             </div>
           </div>
 
           <!-- SmartDocAI -->
           <div class="mix ai">
-            <div class="card project-card" data-motion="fade-up">
-              <div class="project-img-wrap">
-                <img src="assets/img/project2.jpg" alt="SmartDocAI" class="work-img" />
-                <div class="project-hover-overlay">
-                  <div class="project-arch">
-                    <div class="arch-flow">
-                      <span>Streamlit UI</span>
-                      <i class="ri-arrow-down-line"></i>
-                      <span>EasyOCR</span>
-                      <i class="ri-arrow-down-line"></i>
-                      <span>Whisper STT</span>
-                      <i class="ri-arrow-down-line"></i>
-                      <span>Gemini LLM + gTTS</span>
-                    </div>
+            <div class="flip-card" data-motion="fade-up">
+              <div class="flip-card-inner">
+                <div class="flip-front card project-card">
+                  <div class="project-img-wrap">
+                    <img src="assets/img/project2.jpg" alt="SmartDocAI" class="work-img" />
                   </div>
+                  <div class="project-tags">
+                    <span class="tag">Python</span><span class="tag">EasyOCR</span><span class="tag">Whisper</span><span class="tag">LLM</span>
+                  </div>
+                  <h4 class="work-category">AI / ML</h4>
+                  <h3 class="work-title">SmartDocAI</h3>
+                  <p class="work-description">AI assistant for individuals with Specific Learning Disabilities. OCR + STT + LLM summarization + TTS pipeline.</p>
+                  <span class="flip-hint"><i class="ri-refresh-line"></i> Hover for details</span>
                 </div>
-              </div>
-              <div class="project-tags">
-                <span class="tag">Python</span><span class="tag">EasyOCR</span><span class="tag">Whisper</span><span class="tag">LLM</span>
-              </div>
-              <h4 class="work-category">AI / ML</h4>
-              <h3 class="work-title">SmartDocAI</h3>
-              <p class="work-description">
-                AI assistant for individuals with Specific Learning Disabilities. Extracts text from images/audio,
-                generates LLM summaries, converts content to speech. 95% OCR accuracy.
-              </p>
-              <div class="project-links">
-                <a href="https://github.com/CrowdContract/SmartDocAI" target="_blank" class="link">
-                  GitHub <i class="ri-github-line link-icon"></i>
-                </a>
+                <div class="flip-back">
+                  <h3 class="flip-back-title">SmartDocAI</h3>
+                  <div class="flip-back-arch">
+                    <div class="flip-arch-node">Streamlit UI</div>
+                    <i class="ri-arrow-down-line"></i>
+                    <div class="flip-arch-node">EasyOCR + Whisper</div>
+                    <i class="ri-arrow-down-line"></i>
+                    <div class="flip-arch-node">Gemini LLM</div>
+                    <i class="ri-arrow-down-line"></i>
+                    <div class="flip-arch-node">gTTS Output</div>
+                  </div>
+                  <div class="flip-back-metrics">
+                    <div class="flip-metric"><span>95%</span><p>OCR Accuracy</p></div>
+                    <div class="flip-metric"><span>80%</span><p>Faster Process</p></div>
+                    <div class="flip-metric"><span>SLD</span><p>Accessibility</p></div>
+                  </div>
+                  <a href="https://github.com/CrowdContract/SmartDocAI" target="_blank" class="flip-back-link">View on GitHub <i class="ri-external-link-line"></i></a>
+                </div>
               </div>
             </div>
           </div>
 
           <!-- VideoMindAI -->
           <div class="mix ai">
-            <div class="card project-card" data-motion="fade-up">
-              <div class="project-img-wrap">
-                <img src="assets/img/project3.jpeg" alt="VideoMindAI" class="work-img" />
-                <div class="project-hover-overlay">
-                  <div class="project-arch">
-                    <div class="arch-flow">
-                      <span>Video Input</span>
-                      <i class="ri-arrow-down-line"></i>
-                      <span>Frame Extraction</span>
-                      <i class="ri-arrow-down-line"></i>
-                      <span>LLM Analysis</span>
-                      <i class="ri-arrow-down-line"></i>
-                      <span>Summary Output</span>
-                    </div>
+            <div class="flip-card" data-motion="fade-up">
+              <div class="flip-card-inner">
+                <div class="flip-front card project-card">
+                  <div class="project-img-wrap">
+                    <img src="assets/img/project3.jpeg" alt="VideoMindAI" class="work-img" />
                   </div>
+                  <div class="project-tags">
+                    <span class="tag">AI</span><span class="tag">Video</span><span class="tag">LLM</span><span class="tag">Python</span>
+                  </div>
+                  <h4 class="work-category">AI / ML</h4>
+                  <h3 class="work-title">VideoMindAI</h3>
+                  <p class="work-description">AI-powered video summarization. Extracts key insights from video content using LLM APIs for fast, intelligent understanding.</p>
+                  <span class="flip-hint"><i class="ri-refresh-line"></i> Hover for details</span>
                 </div>
-              </div>
-              <div class="project-tags">
-                <span class="tag">AI</span><span class="tag">Video</span><span class="tag">LLM</span><span class="tag">Python</span>
-              </div>
-              <h4 class="work-category">AI / ML</h4>
-              <h3 class="work-title">VideoMindAI</h3>
-              <p class="work-description">
-                AI-powered video summarization and analysis tool. Extracts key insights from video content
-                using LLM APIs for fast, intelligent content understanding.
-              </p>
-              <div class="project-links">
-                <a href="https://github.com/CrowdContract/VideoMindAI" target="_blank" class="link">
-                  GitHub <i class="ri-github-line link-icon"></i>
-                </a>
+                <div class="flip-back">
+                  <h3 class="flip-back-title">VideoMindAI</h3>
+                  <div class="flip-back-arch">
+                    <div class="flip-arch-node">Video Input</div>
+                    <i class="ri-arrow-down-line"></i>
+                    <div class="flip-arch-node">Frame Extraction</div>
+                    <i class="ri-arrow-down-line"></i>
+                    <div class="flip-arch-node">LLM Analysis</div>
+                    <i class="ri-arrow-down-line"></i>
+                    <div class="flip-arch-node">Summary Output</div>
+                  </div>
+                  <div class="flip-back-metrics">
+                    <div class="flip-metric"><span>AI</span><p>Powered</p></div>
+                    <div class="flip-metric"><span>LLM</span><p>Insights</p></div>
+                    <div class="flip-metric"><span>Fast</span><p>Processing</p></div>
+                  </div>
+                  <a href="https://github.com/CrowdContract/VideoMindAI" target="_blank" class="flip-back-link">View on GitHub <i class="ri-external-link-line"></i></a>
+                </div>
               </div>
             </div>
           </div>
 
           <!-- CivicReport -->
           <div class="mix fullstack">
-            <div class="card project-card" data-motion="fade-up">
-              <div class="project-img-wrap">
-                <img src="assets/img/project4.jpeg" alt="CivicReport" class="work-img" />
-                <div class="project-hover-overlay">
-                  <div class="project-arch">
-                    <div class="arch-flow">
-                      <span>React + Maps</span>
-                      <i class="ri-arrow-down-line"></i>
-                      <span>Express API</span>
-                      <i class="ri-arrow-down-line"></i>
-                      <span>MongoDB</span>
-                      <i class="ri-arrow-down-line"></i>
-                      <span>Geolocation</span>
-                    </div>
+            <div class="flip-card" data-motion="fade-up">
+              <div class="flip-card-inner">
+                <div class="flip-front card project-card">
+                  <div class="project-img-wrap">
+                    <img src="assets/img/project4.jpeg" alt="CivicReport" class="work-img" />
                   </div>
+                  <div class="project-tags">
+                    <span class="tag">MERN</span><span class="tag">Civic</span><span class="tag">Maps</span>
+                  </div>
+                  <h4 class="work-category">Full-Stack</h4>
+                  <h3 class="work-title">CivicReport</h3>
+                  <p class="work-description">Community civic issue reporting platform. Report, track, and upvote local infrastructure problems with location tagging.</p>
+                  <span class="flip-hint"><i class="ri-refresh-line"></i> Hover for details</span>
                 </div>
-              </div>
-              <div class="project-tags">
-                <span class="tag">MERN</span><span class="tag">Civic</span><span class="tag">Maps</span>
-              </div>
-              <h4 class="work-category">Full-Stack</h4>
-              <h3 class="work-title">CivicReport</h3>
-              <p class="work-description">
-                Community-driven civic issue reporting platform. Citizens can report, track, and upvote
-                local infrastructure problems with location tagging and status updates.
-              </p>
-              <div class="project-links">
-                <a href="https://github.com/CrowdContract/CivicReport" target="_blank" class="link">
-                  GitHub <i class="ri-github-line link-icon"></i>
-                </a>
+                <div class="flip-back">
+                  <h3 class="flip-back-title">CivicReport</h3>
+                  <div class="flip-back-arch">
+                    <div class="flip-arch-node">React + Maps</div>
+                    <i class="ri-arrow-down-line"></i>
+                    <div class="flip-arch-node">Express API</div>
+                    <i class="ri-arrow-down-line"></i>
+                    <div class="flip-arch-node">MongoDB</div>
+                    <i class="ri-arrow-down-line"></i>
+                    <div class="flip-arch-node">Geolocation</div>
+                  </div>
+                  <div class="flip-back-metrics">
+                    <div class="flip-metric"><span>RT</span><p>Status Track</p></div>
+                    <div class="flip-metric"><span>Map</span><p>Location Tag</p></div>
+                    <div class="flip-metric"><span>Vote</span><p>Upvoting</p></div>
+                  </div>
+                  <a href="https://github.com/CrowdContract/CivicReport" target="_blank" class="flip-back-link">View on GitHub <i class="ri-external-link-line"></i></a>
+                </div>
               </div>
             </div>
           </div>
 
           <!-- Planto -->
           <div class="mix fullstack ai">
-            <div class="card project-card" data-motion="fade-up">
-              <div class="project-img-wrap">
-                <img src="assets/img/project5.jpg" alt="Planto" class="work-img" />
-                <div class="project-hover-overlay">
-                  <div class="project-arch">
-                    <div class="arch-flow">
-                      <span>React Native / Web</span>
-                      <i class="ri-arrow-down-line"></i>
-                      <span>Node.js API</span>
-                      <i class="ri-arrow-down-line"></i>
-                      <span>AI Disease Detection</span>
-                      <i class="ri-arrow-down-line"></i>
-                      <span>MongoDB</span>
-                    </div>
+            <div class="flip-card" data-motion="fade-up">
+              <div class="flip-card-inner">
+                <div class="flip-front card project-card">
+                  <div class="project-img-wrap">
+                    <img src="assets/img/project5.jpg" alt="Planto" class="work-img" />
                   </div>
+                  <div class="project-tags">
+                    <span class="tag">React</span><span class="tag">AI</span><span class="tag">Node.js</span>
+                  </div>
+                  <h4 class="work-category">Full-Stack AI</h4>
+                  <h3 class="work-title">Planto</h3>
+                  <p class="work-description">Smart plant care assistant. Identifies plants, care schedules, watering reminders, AI disease detection.</p>
+                  <span class="flip-hint"><i class="ri-refresh-line"></i> Hover for details</span>
                 </div>
-              </div>
-              <div class="project-tags">
-                <span class="tag">React</span><span class="tag">AI</span><span class="tag">Node.js</span>
-              </div>
-              <h4 class="work-category">Full-Stack AI</h4>
-              <h3 class="work-title">Planto</h3>
-              <p class="work-description">
-                Smart plant care assistant app. Identifies plants, provides care schedules,
-                watering reminders, and AI-powered disease detection and treatment advice.
-              </p>
-              <div class="project-links">
-                <a href="https://github.com/CrowdContract/planto" target="_blank" class="link">
-                  GitHub <i class="ri-github-line link-icon"></i>
-                </a>
+                <div class="flip-back">
+                  <h3 class="flip-back-title">Planto</h3>
+                  <div class="flip-back-arch">
+                    <div class="flip-arch-node">React Web App</div>
+                    <i class="ri-arrow-down-line"></i>
+                    <div class="flip-arch-node">Node.js API</div>
+                    <i class="ri-arrow-down-line"></i>
+                    <div class="flip-arch-node">AI Detection</div>
+                    <i class="ri-arrow-down-line"></i>
+                    <div class="flip-arch-node">MongoDB</div>
+                  </div>
+                  <div class="flip-back-metrics">
+                    <div class="flip-metric"><span>AI</span><p>Detection</p></div>
+                    <div class="flip-metric"><span>Smart</span><p>Reminders</p></div>
+                    <div class="flip-metric"><span>Care</span><p>Schedules</p></div>
+                  </div>
+                  <a href="https://github.com/CrowdContract/planto" target="_blank" class="flip-back-link">View on GitHub <i class="ri-external-link-line"></i></a>
+                </div>
               </div>
             </div>
           </div>
 
           <!-- Fullstack E-Commerce -->
           <div class="mix fullstack">
-            <div class="card project-card" data-motion="fade-up">
-              <div class="project-img-wrap">
-                <img src="assets/img/project6.jpg" alt="E-Commerce MERN" class="work-img" />
-                <div class="project-hover-overlay">
-                  <div class="project-arch">
-                    <div class="arch-flow">
-                      <span>React + Context</span>
-                      <i class="ri-arrow-down-line"></i>
-                      <span>Express API</span>
-                      <i class="ri-arrow-down-line"></i>
-                      <span>Stripe Payments</span>
-                      <i class="ri-arrow-down-line"></i>
-                      <span>MongoDB + JWT</span>
-                    </div>
+            <div class="flip-card" data-motion="fade-up">
+              <div class="flip-card-inner">
+                <div class="flip-front card project-card">
+                  <div class="project-img-wrap">
+                    <img src="assets/img/project6.jpg" alt="E-Commerce MERN" class="work-img" />
                   </div>
+                  <div class="project-tags">
+                    <span class="tag">MERN</span><span class="tag">Stripe</span><span class="tag">JWT</span><span class="tag">Admin</span>
+                  </div>
+                  <h4 class="work-category">Full-Stack</h4>
+                  <h3 class="work-title">E-Commerce MERN</h3>
+                  <p class="work-description">Production-grade e-commerce store. Product catalog, cart, Stripe payments, role-based admin panel, JWT auth.</p>
+                  <span class="flip-hint"><i class="ri-refresh-line"></i> Hover for details</span>
                 </div>
-              </div>
-              <div class="project-tags">
-                <span class="tag">MERN</span><span class="tag">Stripe</span><span class="tag">JWT</span><span class="tag">Admin</span>
-              </div>
-              <h4 class="work-category">Full-Stack</h4>
-              <h3 class="work-title">E-Commerce MERN App</h3>
-              <p class="work-description">
-                Production-grade full-stack e-commerce store with product catalog, cart, order management,
-                Stripe payments, role-based admin panel, and JWT auth.
-              </p>
-              <div class="project-links">
-                <a href="https://github.com/CrowdContract/fullstack-ecommerce-mern" target="_blank" class="link">
-                  GitHub <i class="ri-github-line link-icon"></i>
-                </a>
+                <div class="flip-back">
+                  <h3 class="flip-back-title">E-Commerce MERN</h3>
+                  <div class="flip-back-arch">
+                    <div class="flip-arch-node">React + Context</div>
+                    <i class="ri-arrow-down-line"></i>
+                    <div class="flip-arch-node">Express API</div>
+                    <i class="ri-arrow-down-line"></i>
+                    <div class="flip-arch-node">Stripe Payments</div>
+                    <i class="ri-arrow-down-line"></i>
+                    <div class="flip-arch-node">MongoDB + JWT</div>
+                  </div>
+                  <div class="flip-back-metrics">
+                    <div class="flip-metric"><span>Stripe</span><p>Payments</p></div>
+                    <div class="flip-metric"><span>RBAC</span><p>Admin Panel</p></div>
+                    <div class="flip-metric"><span>JWT</span><p>Auth</p></div>
+                  </div>
+                  <a href="https://github.com/CrowdContract/fullstack-ecommerce-mern" target="_blank" class="flip-back-link">View on GitHub <i class="ri-external-link-line"></i></a>
+                </div>
               </div>
             </div>
           </div>
@@ -1367,5 +1405,6 @@
   <script src="assets/js/chatbot.js"></script>
   <script src="assets/js/animations.js"></script>
   <script src="assets/js/visual-effects.js"></script>
+  <script src="assets/js/phase3.js"></script>
 </body>
 </html>
