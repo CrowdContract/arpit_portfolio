@@ -15,29 +15,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100..900&family=Montserrat+Alternates:wght@600;700;800&display=swap" rel="stylesheet" />
   <!-- Lottie Web -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js" defer></script>
-  <!-- Rive (for chatbot avatar) -->
-  <script src="https://unpkg.com/@rive-app/canvas@2.21.6/rive.js" defer></script>
 
   <link rel="stylesheet" href="assets/css/styles.css" />
   <title>Arpit Kumar — Full-Stack Developer</title>
 </head>
 <body class="light">
 
-  <!--=============== SPLASH SCREEN ===============-->
+  <!--=============== SPLASH SCREEN — WAVE WIPE ===============-->
   <div id="splash" class="splash" aria-hidden="true">
-    <div class="splash-inner">
+    <canvas id="splash-canvas" class="splash-canvas"></canvas>
+    <div class="splash-content">
       <div class="splash-logo">
-        <span class="splash-letter" data-l="A">A</span>
-        <span class="splash-letter" data-l="r">r</span>
-        <span class="splash-letter" data-l="p">p</span>
-        <span class="splash-letter" data-l="i">i</span>
-        <span class="splash-letter" data-l="t">t</span>
+        <span class="splash-letter">A</span>
+        <span class="splash-letter">r</span>
+        <span class="splash-letter">p</span>
+        <span class="splash-letter">i</span>
+        <span class="splash-letter">t</span>
       </div>
       <p class="splash-tagline">Full-Stack Developer &amp; AI Engineer</p>
-      <div class="splash-bar"><div class="splash-bar-fill"></div></div>
     </div>
-    <div class="splash-overlay-top"></div>
-    <div class="splash-overlay-bot"></div>
   </div>
 
   <!--=============== SCROLL PROGRESS ===============-->
@@ -1345,9 +1341,7 @@
   <!--=============== AI CHATBOT ===============-->
   <div class="chatbot-wrapper" id="chatbot-wrapper">
     <button class="chatbot-toggle" id="chatbot-toggle" aria-label="Open AI Assistant">
-      <!-- Rive robot avatar — falls back to icon if Rive unavailable -->
-      <canvas id="rive-bot-canvas" width="44" height="44" class="rive-bot-canvas"></canvas>
-      <i class="ri-robot-2-line rive-fallback" id="chatbot-icon-open"></i>
+      <i class="ri-robot-2-line" id="chatbot-icon-open"></i>
       <i class="ri-close-line" id="chatbot-icon-close" style="display:none"></i>
     </button>
 

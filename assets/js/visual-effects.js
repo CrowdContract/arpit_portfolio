@@ -180,52 +180,7 @@
 })();
 
 
-/* ─── 3. RIVE ROBOT AVATAR (Chatbot Button) ──────────────────────────────
-   Uses a free Rive robot file hosted on the public Rive CDN.
-   Falls back to the Remixicon if Rive fails to load.
-─────────────────────────────────────────────────────────────────────────── */
-(function initRiveBot() {
-  const canvas   = document.getElementById('rive-bot-canvas');
-  const fallback = document.getElementById('chatbot-icon-open');
-  if (!canvas || typeof RiveCanvas === 'undefined' && typeof rive === 'undefined') {
-    if (fallback) fallback.style.display = '';
-    if (canvas)   canvas.style.display   = 'none';
-    return;
-  }
-
-  // Use the global 'rive' namespace from @rive-app/canvas
-  const RiveLib = window.rive || window.RiveCanvas;
-  if (!RiveLib || !RiveLib.Rive) {
-    if (fallback) fallback.style.display = '';
-    if (canvas)   canvas.style.display   = 'none';
-    return;
-  }
-
-  try {
-    const r = new RiveLib.Rive({
-      // Free Rive robot file from rive.app community gallery
-      src: 'https://cdn.rive.app/animations/vehicles.riv',
-      canvas: canvas,
-      autoplay: true,
-      stateMachines: 'bumpy',
-      onLoadError: () => {
-        canvas.style.display   = 'none';
-        if (fallback) fallback.style.display = '';
-      },
-    });
-
-    // Trigger hover state on chatbot button hover
-    const btn = document.getElementById('chatbot-toggle');
-    if (btn) {
-      btn.addEventListener('mouseenter', () => {
-        try { r.play(); } catch(_) {}
-      });
-    }
-  } catch (e) {
-    canvas.style.display   = 'none';
-    if (fallback) fallback.style.display = '';
-  }
-})();
+/* Rive removed — using clean icon with CSS pulse animation instead */
 
 
 /* ─── 4. ANIMATED CSS IMPROVEMENTS ──────────────────────────────────────

@@ -2,47 +2,133 @@
 (function () {
   'use strict';
 
-  /* ── 1. PREMIUM SPLASH SCREEN ─────────────────────────────────────────
-     Sequence: logo letters drop in → tagline fades → bar fills → panels
-     slide apart (top/bottom curtain reveal).
+  /* ── 1. TIDAL WAVE SPLASH SCREEN ─────────────────────────────────────
+     Canvas draws 3 layered sine waves that sweep left→right across the
+     screen, then reverse back right→left to wipe away, revealing the
+     portfolio. Letters drop in while waves are rolling.
   ─────────────────────────────────────────────────────────────────────── */
   (function initSplash() {
-    const splash    = document.getElementById('splash');
-    const letters   = splash ? splash.querySelectorAll('.splash-letter') : [];
-    const tagline   = splash ? splash.querySelector('.splash-tagline')   : null;
-    const barFill   = splash ? splash.querySelector('.splash-bar-fill')  : null;
-    const overlayT  = splash ? splash.querySelector('.splash-overlay-top') : null;
-    const overlayB  = splash ? splash.querySelector('.splash-overlay-bot') : null;
-    const body      = document.body;
+    const splash  = document.getElementById('splash');
+    const canvas  = document.getElementById('splash-canvas');
+    const letters = splash ? splash.querySelectorAll('.splash-letter')  : [];
+    const tagline = splash ? splash.querySelector('.splash-tagline')    : null;
+    const body    = document.body;
+    if (!splash || !canvas) return;
 
-    if (!splash) return;
-
-    // Prevent scroll during splash
     body.style.overflow = 'hidden';
 
-    // Stagger letter drop-in
-    letters.forEach((l, i) => {
-      setTimeout(() => l.classList.add('visible'), 200 + i * 90);
-    });
+    const ctx = canvas.getContext('2d');
+    let W, H;
 
-    // Tagline fade
-    setTimeout(() => { if (tagline) tagline.classList.add('visible'); }, 800);
+    function resize() {
+      W = canvas.width  = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
 
-    // Progress bar fills over 1.2s
-    setTimeout(() => { if (barFill) barFill.style.width = '100%'; }, 900);
+    // Wave config
+    const WAVES = [
+      { color: 'hsla(165,55%,28%,0.95)', amp: 0.09, freq: 1.6, speed: 0.8,  phase: 0 },
+      { color: 'hsla(165,60%,22%,0.88)', amp: 0.07, freq: 2.1, speed: 1.1,  phase: 1.2 },
+      { color: 'hsla(165,45%,14%,0.96)', amp: 0.06, freq: 1.3, speed: 0.65, phase: 2.5 },
+    ];
 
-    // Curtain reveal — top slides up, bottom slides down
-    setTimeout(() => {
-      if (overlayT) overlayT.classList.add('slide-out');
-      if (overlayB) overlayB.classList.add('slide-out');
-    }, 2200);
+    // Animation state
+    // Stage 0: waves roll IN from left (fill screen, t: 0 → 1.4s)
+    // Stage 1: hold + show logo (t: 1.4s → 2.4s)
+    // Stage 2: waves roll OUT to right (t: 2.4s → 3.8s)
+    // Stage 3: fade out splash (t: 3.8s)
+    let startTime = null;
+    const T_IN    = 1400;
+    const T_HOLD  = 2300;
+    const T_OUT   = 3700;
+    const T_DONE  = 4100;
 
-    // Remove splash from DOM
-    setTimeout(() => {
-      splash.style.opacity = '0';
-      body.style.overflow  = '';
-      setTimeout(() => splash.remove(), 500);
-    }, 2700);
+    let lettersShown = false;
+    let taglineShown = false;
+    let rafId;
+
+    function easeInOut(t) {
+      return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    }
+
+    function drawWaves(elapsed) {
+      ctx.clearRect(0, 0, W, H);
+
+      // Background
+      ctx.fillStyle = 'hsl(165,22%,5%)';
+      ctx.fillRect(0, 0, W, H);
+
+      let progress; // 0 = fully right (hidden), 1 = fully left (covering screen)
+
+      if (elapsed < T_IN) {
+        // Rolling in: right edge of fill sweeps from right to left
+        progress = easeInOut(elapsed / T_IN);
+      } else if (elapsed < T_HOLD) {
+        progress = 1;
+      } else if (elapsed < T_OUT) {
+        // Rolling out: fill retracts to right
+        progress = 1 - easeInOut((elapsed - T_HOLD) / (T_OUT - T_HOLD));
+      } else {
+        progress = 0;
+      }
+
+      // Draw each wave layer
+      WAVES.forEach((w, i) => {
+        const t     = elapsed / 1000;
+        const ampPx = H * w.amp;
+
+        // Leading edge x position (right to left on in, left to right on out)
+        // progress 0 = wave at x=W (off right), progress 1 = wave at x=0 (fully covering)
+        const leadX = W * (1 - progress) - ampPx;
+
+        ctx.beginPath();
+        ctx.moveTo(leadX, H);
+
+        // Draw the wavy leading edge
+        for (let y = H; y >= 0; y -= 3) {
+          const wave = Math.sin(y * w.freq * 0.015 + t * w.speed + w.phase) * ampPx;
+          ctx.lineTo(leadX + wave, y);
+        }
+
+        ctx.lineTo(W, 0);
+        ctx.lineTo(W, H);
+        ctx.closePath();
+        ctx.fillStyle = w.color;
+        ctx.fill();
+      });
+
+      // Show letters once wave covers 40%
+      if (progress > 0.4 && !lettersShown) {
+        lettersShown = true;
+        letters.forEach((l, i) => {
+          setTimeout(() => l.classList.add('visible'), i * 80);
+        });
+      }
+      if (progress > 0.65 && !taglineShown) {
+        taglineShown = true;
+        if (tagline) tagline.classList.add('visible');
+      }
+    }
+
+    function frame(ts) {
+      if (!startTime) startTime = ts;
+      const elapsed = ts - startTime;
+
+      drawWaves(elapsed);
+
+      if (elapsed >= T_DONE) {
+        cancelAnimationFrame(rafId);
+        splash.style.opacity = '0';
+        body.style.overflow  = '';
+        setTimeout(() => splash.remove(), 650);
+        return;
+      }
+      rafId = requestAnimationFrame(frame);
+    }
+
+    rafId = requestAnimationFrame(frame);
   })();
 
 
