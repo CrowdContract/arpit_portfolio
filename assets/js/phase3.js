@@ -308,9 +308,8 @@
 
     var canvas = document.createElement('canvas');
     canvas.id = 'cursor-canvas';
-    // z-index must be below header (1000) and style-switcher (2000)
-    // pointer-events:none ensures it NEVER blocks clicks
-    canvas.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:999;';
+    // Topmost layer visually — pointer-events:none means it NEVER blocks clicks
+    canvas.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:99999;';
     document.body.appendChild(canvas);
     var ctx = canvas.getContext('2d');
 

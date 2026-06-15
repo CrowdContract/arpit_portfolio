@@ -1590,14 +1590,16 @@ button, input, textarea { border: none; outline: none; background-color: transpa
   box-shadow: 0 0 8px hsla(var(--hue), 70%, 50%, 0.6);
 }
 
-/* ── CUSTOM CURSOR — canvas-based, pointer-events:none always ── */
+/* ── CUSTOM CURSOR — canvas is topmost but pointer-events:none so never blocks clicks ── */
 @media (hover: hover) {
   body { cursor: none !important; }
+  /* restore pointer appearance inside style-switcher so inputs work normally */
+  .style-switcher input[type="radio"] { cursor: none !important; }
 }
 #cursor-canvas {
   position: fixed; inset: 0;
   pointer-events: none !important;
-  z-index: 999;   /* below header:1000, style-switcher:2000, splash:99999 */
+  z-index: 99999; /* above everything — safe because pointer-events:none */
 }
 
 /* ── 3D FLIP CARDS ── */
