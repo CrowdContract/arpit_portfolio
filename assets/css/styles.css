@@ -1765,3 +1765,55 @@ button, input, textarea { border: none; outline: none; background-color: transpa
   .flip-card.flipped .flip-back { display: flex; }
   .flip-card.flipped .flip-front { display: none; }
 }
+
+/*=============== DOODLE ILLUSTRATIONS ===============*/
+.doodle {
+  color: var(--first-color);
+  opacity: 0.55;
+  pointer-events: none;
+  user-select: none;
+  transition: opacity 0.3s;
+}
+.doodle:hover { opacity: 0.85; }
+.doodle-stroke { stroke: currentColor; }
+.doodle-text   { fill: currentColor; }
+
+/* Hero code doodle — floats near the CTA buttons */
+.doodle-code {
+  display: inline-block;
+  margin-top: 1.5rem;
+  animation: doodle-float 4s ease-in-out infinite;
+}
+
+/* Skills arrow — sits above the galaxy, centered */
+.doodle-arrow {
+  display: flex;
+  justify-content: center;
+  margin-bottom: -1rem;
+  animation: doodle-float 3.5s ease-in-out infinite 0.5s;
+}
+
+/* Journey lightbulb — right-aligned above timeline */
+.doodle-lightbulb {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: -0.5rem;
+  padding-right: 2rem;
+  animation: doodle-float 5s ease-in-out infinite 1s;
+}
+
+/* Contact speech bubble — left-aligned above grid */
+.doodle-bubble {
+  margin-bottom: 1.5rem;
+  animation: doodle-float 4.5s ease-in-out infinite 0.3s;
+}
+
+@keyframes doodle-float {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50%       { transform: translateY(-8px) rotate(1deg); }
+}
+
+/* Hide doodles on very small screens */
+@media screen and (max-width: 480px) {
+  .doodle { display: none; }
+}
