@@ -1593,13 +1593,26 @@ button, input, textarea { border: none; outline: none; background-color: transpa
 /* ── CUSTOM CURSOR — canvas is topmost but pointer-events:none so never blocks clicks ── */
 @media (hover: hover) {
   body { cursor: none !important; }
-  /* restore pointer appearance inside style-switcher so inputs work normally */
-  .style-switcher input[type="radio"] { cursor: none !important; }
+  /* Restore normal cursor inside style-switcher for usability */
+  .style-switcher,
+  .style-switcher *,
+  .chatbot-panel,
+  .chatbot-panel *,
+  .github-bell-panel,
+  .github-bell-panel * {
+    cursor: auto !important;
+  }
+  .style-switcher input[type="radio"],
+  .style-switcher label,
+  .style-switcher-color {
+    cursor: pointer !important;
+  }
+  .style-switcher-close { cursor: pointer !important; }
 }
 #cursor-canvas {
   position: fixed; inset: 0;
   pointer-events: none !important;
-  z-index: 99999; /* above everything — safe because pointer-events:none */
+  z-index: 99999;
 }
 
 /* ── 3D FLIP CARDS ── */

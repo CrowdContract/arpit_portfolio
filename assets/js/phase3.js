@@ -325,11 +325,20 @@
     var trail = [];
     var TRAIL_MAX = 12;
     var frameCount = 0;
+    var isOverPanel = false; // hide hex over panels
 
     document.addEventListener('mousemove', function(e) { mx = e.clientX; my = e.clientY; });
     var SEL = 'a,button,.btn,.card,.flip-card,.galaxy-node,.faq-chip,.nav-link';
-    document.addEventListener('mouseover', function(e) { if (e.target.closest(SEL)) isHover = true; });
-    document.addEventListener('mouseout',  function(e) { if (e.target.closest(SEL)) isHover = false; });
+    // Hide hex cursor when over style-switcher, chatbot panel, bell panel
+    var PANEL_SEL = '.style-switcher,.chatbot-panel,.github-bell-panel';
+    document.addEventListener('mouseover', function(e) {
+      if (e.target.closest(SEL)) isHover = true;
+      if (e.target.closest(PANEL_SEL)) isOverPanel = true;
+    });
+    document.addEventListener('mouseout', function(e) {
+      if (e.target.closest(SEL)) isHover = false;
+      if (e.target.closest(PANEL_SEL)) isOverPanel = false;
+    });
     document.addEventListener('mousedown', function() { isClick = true; });
     document.addEventListener('mouseup',   function() { isClick = false; });
 
@@ -359,6 +368,12 @@
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       frameCount++;
+
+      // Don't draw when over panels — let native cursor show
+      if (isOverPanel) {
+        requestAnimationFrame(animate);
+        return;
+      }
 
       if (frameCount % 3 === 0) {
         trail.push({ x: mx, y: my, size: isHover ? 18 : 11, age: 0, rot: Math.random() * Math.PI });
