@@ -308,7 +308,9 @@
 
     var canvas = document.createElement('canvas');
     canvas.id = 'cursor-canvas';
-    canvas.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1999;';
+    // z-index must be below header (1000) and style-switcher (2000)
+    // pointer-events:none ensures it NEVER blocks clicks
+    canvas.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:999;';
     document.body.appendChild(canvas);
     var ctx = canvas.getContext('2d');
 
@@ -378,8 +380,23 @@
     }
     animate();
 
+    // Hide cursor visually — use opacity trick, NOT cursor:none on interactive elements
     var s = document.createElement('style');
-    s.textContent = '@media (hover:hover){ html { cursor: none !important; } a, button, [role="button"], label, input, textarea, select, .nav-settings, .nav-toggle, .style-switcher-close, .style-switcher-color, .style-switcher-input, .style-switcher-label, .faq-chip, .galaxy-node, .flip-card, .chatbot-toggle, .github-bell-btn, .work-item { cursor: none !important; } }';
+    s.textContent = [
+      '@media (hover:hover){',
+      '  body { cursor: none !important; }',
+      '  a, button, input, textarea, select, label,',
+      '  [tabindex], [role="button"],',
+      '  .nav-settings, .nav-toggle, .nav-link, .nav-logo,',
+      '  .style-switcher, .style-switcher-color, .style-switcher-close,',
+      '  .style-switcher-input, .style-switcher-label,',
+      '  .faq-chip, .galaxy-node, .flip-card, .work-item,',
+      '  .chatbot-toggle, .github-bell-btn, .btn, .link,',
+      '  .card, .social-link, .resume-header, .contact-card {',
+      '    cursor: none !important;',
+      '  }',
+      '}'
+    ].join('');
     document.head.appendChild(s);
   })();
 

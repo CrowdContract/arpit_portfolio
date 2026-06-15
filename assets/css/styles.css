@@ -1590,17 +1590,15 @@ button, input, textarea { border: none; outline: none; background-color: transpa
   box-shadow: 0 0 8px hsla(var(--hue), 70%, 50%, 0.6);
 }
 
-/* ── CUSTOM CURSOR — handled entirely by canvas in phase3.js ── */
+/* ── CUSTOM CURSOR — canvas-based, pointer-events:none always ── */
 @media (hover: hover) {
-  html { cursor: none !important; }
-  a, button, [role="button"], label, input, textarea, select,
-  .nav-settings, .nav-toggle, .style-switcher-close,
-  .style-switcher-color, .faq-chip, .galaxy-node,
-  .flip-card, .chatbot-toggle, .github-bell-btn, .work-item {
-    cursor: none !important;
-  }
+  body { cursor: none !important; }
 }
-#cursor-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 1999; }
+#cursor-canvas {
+  position: fixed; inset: 0;
+  pointer-events: none !important;
+  z-index: 999;   /* below header:1000, style-switcher:2000, splash:99999 */
+}
 
 /* ── 3D FLIP CARDS ── */
 .flip-card {
